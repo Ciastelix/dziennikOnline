@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+Lista Uczniów
+{% endblock %}
+{% block content %}
+<br>
+
+<table style="text-align: center;">
+    <tr>
+        <th colspan="2">
+            <p>Wybierz Ucznia</p>
+        </th>
+    </tr>
+    {% for user in va %}
+    <tr>
+
+        <td><a href="oceny/{{user[2]}}" style="color: #86af49;">{{user[0]}} {{user[1]}}<br><br></a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<script>alert('{{ msg }}');</script>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+{% endblock %}

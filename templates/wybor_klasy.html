@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Wybór Klasy{% endblock %}
+{% block style %} {% endblock %}
+{% block content %}
+<form action="#" method="post">
+    <p>Klasa: </p>
+    <select name="klasa">
+        <option disabled value="Wybierz klase" name="klasa" selected>Wybierz klase</option>
+        {% for klasa in klasy %}
+        <option value={{klasa[0]}} name="klasa">{{klasa[1]}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit" value="Wybierz" />
+</form>
+{% endblock %}

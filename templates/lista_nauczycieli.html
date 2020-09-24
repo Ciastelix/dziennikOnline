@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+Lista Nauczycieli
+{% endblock %}
+{% block content %}
+<br>
+
+<table style="text-align: center;">
+    <tr>
+        <th colspan="2">
+            <p>Lista Nauczycieli</p>
+        </th>
+    </tr>
+    {% for user in va %}
+    <tr>
+        <td>{{user[0]}}</td>
+        <td>{{user[1]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

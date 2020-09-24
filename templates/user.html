@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Strona użytkownika{% endblock %}
+
+{% block content %}
+
+<p>Twoje uprawnienia:</p>
+{% for uprawnienie in uprawnienia %}
+<p>{{uprawnienie}}</p>
+{% endfor %}
+{% endblock %}

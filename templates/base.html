@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Fira Code' rel='stylesheet'>
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Fira Code';
+            font-size: auto;
+            place-items: center;
+        }
+
+        body {
+            /*background: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg"); */
+            background-color: #e3eaa7;
+            color: #86af49;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        input[type='text'] {
+            border-radius: 25px;
+            background-color: #d5e1df;
+            color: #3e4444;
+            width: auto;
+            height: auto;
+        }
+
+        input[type='date'] {
+            border-radius: 25px;
+            background-color: #d5e1df;
+            color: #3e4444;
+            width: auto;
+            height: auto;
+        }
+
+        select {
+            border-radius: 25px;
+            background-color: #d5e1df;
+            color: #3e4444;
+            width: auto;
+            height: auto;
+        }
+
+        input[type='submit'] {
+            width: auto;
+            border-radius: 25px;
+            background-color: cadetblue;
+            color: darkturquoise;
+        }
+
+        .bg-light {
+            opacity: 50%;
+        }
+
+        .bg-light:hover {
+            opacity: 100%;
+        }
+    </style>{% block styles %}{% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Strona Główna</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/wybor/klasa">Wybór Klasy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dodaj/ocena">Dodaj Ocenę</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listy
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/uczniowie">Lista Uczniów</a>
+                        <a class="dropdown-item" href="/lista/nauczyciele">Lista Nauczycieli</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Narzędzia Administracyjne
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/dodaj/uczen">Dodaj Ucznia</a>
+                        <a class="dropdown-item" href="/dodaj/nauczyciel">Dodaj Nauczyciela</a>
+                        <a class="dropdown-item" href="/dodaj/klasa">Dodaj Klasę</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Wyloguj</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for msg in messages %}
+        <script>alert('{{ msg }}');</script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %} {% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

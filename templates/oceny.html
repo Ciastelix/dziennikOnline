@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block styles %}
+<style>
+    .tooltipo {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltipo .tooltipotext {
+        visibility: hidden;
+        width: auto;
+        background-color: #86af49;
+        color: #d5e1df;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .tooltipo .tooltipotext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgb(175, 217, 230) transparent transparent transparent;
+    }
+
+    .tooltipo:hover .tooltipotext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+{% endblock %}
+{% block title %}Oceny{% endblock %}
+
+{% block content %}
+<br>
+{% for przedmiot in przedmioty %}
+<p>{{przedmiot[1]}}</p>
+{% for ocena in oceny %}
+{% if przedmiot[0] == ocena[2] %}
+<div class="tooltipo"><a href="{{ocena[0]}}"
+        style="color:#405d27; background-color: #d5e1df; padding: 3px;">{{ocena[1]}}</a>
+    <span class="tooltipotext">Nauczyciel: {{ocena[4]}}<br>Kategoria: {{ocena[5]}}<br>
+        <form method="POST" action="#"><span> Usuń ocenę nr<br>
+                <input name="usuwanie" type="submit" value='{{ocena[0]}}' />
+            </span>
+        </form>
+        {% endif %}
+        {% endfor %}
+        <br><br><br>
+        {% endfor %}
+</div>
+{% endblock %}

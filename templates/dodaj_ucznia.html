@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Dodaj Ucznia{% endblock %}
+{% block content %}
+<form action="#" method="post">
+    <p>Imię: </p>
+    <p><input type="text" name="imie" /></p>
+    <p>Nazwisko: </p>
+    <p><input type="text" name="nazwisko" /></p>
+    <p>PESEL: </p>
+    <p><input type="text" name="pesel" pattern="[0-9]{11}" /></p>
+    <p>Data urodzdenia: </p>
+    <p><input type="date" name="dataUrodzenia" /></p>
+    <p>Klasa: </p>
+    <select name="klasa">
+        <option disabled value="Wybierz klase" name="klasa" selected>Wybierz klase</option>
+        {% for klasa in klasy %}
+        <option value='{{klasa[0]}}' name="klasa">{{klasa[1]}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit" value="Dodaj" />
+</form>
+
+{% endblock %}
