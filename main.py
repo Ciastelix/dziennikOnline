@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
-from time import sleep
+from random import random
 import mysql.connector
 
 
@@ -29,18 +29,17 @@ def login():
     if request.method == "POST":
         user = request.form["username"]
         password = request.form["password"]
-
-        db = mysql.connector.connect(
-            host="localhost", user=user, passwd=password, database="oceny"
-        )
-
-        if db:
+        try:
+            db = mysql.connector.connect(
+                host="localhost", user=user, passwd=password, database="oceny"
+            )
             session.permanent = True
             session["user"] = user
             session["password"] = password
             return redirect(url_for("wyborKlasy"))
-        else:
+        except:
             flash("Niepoprawne dane!")
+            return render_template("login.html")
     else:
         if "user" in session:
             db = mysql.connector.connect(
@@ -54,14 +53,14 @@ def login():
         return render_template("login.html")
 
 
-def stworzKusory():
+def stworzKusory(baza="oceny"):
     global kursor
     global db
     db = mysql.connector.connect(
         host="localhost",
         user=session["user"],
         passwd=session["password"],
-        database="oceny",
+        database=f"{baza}",
     )
     kursor = db.cursor(buffered=True)
 
@@ -320,6 +319,65 @@ def edytujOcene(ide, ideOceny):
             oceny=oceny,
             przedmioty=przedmioty,
         )
+
+
+@app.route("/test/", methods=["POST", "GET"])
+def test():
+    global pytania
+    pytania = []
+    stworzKusory("e")
+    kursor.execute("SELECT COUNT(*) from w")
+    maxLiczba = kursor.fetchall()
+    if request.method == "POST":
+        liczba = int(request.form["liczbaPytan"])
+        kursor.execute(f"SELECT * from w order by RAND() LIMIT {liczba}")
+        for i in kursor:
+            pytania.append(list(i))
+        return redirect(url_for("pytanie"))
+    else:
+        return render_template("test.html", liczbaMax=maxLiczba)
+
+
+@app.route("/test/pytanie/", methods=["POST", "GET"])
+def pytanie():
+    if request.method == "POST":
+        a = []
+        for i in pytania:
+            i[0] = str(i[0])
+            a.append(request.form[f"{i[0]}"])
+        i = 0
+        wynik = 0
+        while i < len(pytania):
+            if pytania[i][6].lower() == "a":
+                if a[i] == pytania[i][2]:
+                    wynik += 1
+            elif pytania[i][6].lower() == "b":
+                if a[i] == pytania[i][3]:
+                    wynik += 1
+            elif pytania[i][6].lower() == "c":
+                if a[i] == pytania[i][4]:
+                    wynik += 1
+            else:
+                if a[i] == pytania[i][5]:
+                    wynik += 1
+            i += 1
+        wynik /= len(pytania)
+        if wynik < 0.31:
+            flash("NIEDOSTATECZNY")
+        elif wynik > 0.30 and wynik < 0.46:
+            flash("DOPUSZCZAJĄCY")
+        elif wynik > 0.45 and wynik < 0.61:
+            flash("DOSTATECZNY")
+        elif wynik > 0.60 and wynik < 0.76:
+            flash("DOBRY")
+        elif wynik > 0.75 and wynik < 0.91:
+            flash("BARDZO DOBRY")
+        else:
+            flash("CELUJĄCY")
+        return render_template("index.html")
+    else:
+
+        return render_template("pytanie.html", pytania=pytania)
 
 
 if __name__ == "__main__":

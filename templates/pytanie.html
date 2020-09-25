@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Strona użytkownika{% endblock %}
+
+{% block content %}
+
+{% for pytanie in pytania %}
+
+<form action="#" method="POST">
+    <h5>{{pytanie[1]}}</h5>
+    <label><input type="radio" name="{{pytanie[0]}}" value="{{pytanie[2]}}" />&nbsp;{{pytanie[2]}}</label>
+    <br>
+    <label><input type="radio" name="{{pytanie[0]}}" value="{{pytanie[3]}}" />&nbsp;{{pytanie[3]}}</label>
+    <br>
+    <label><input type="radio" name="{{pytanie[0]}}" value="{{pytanie[4]}}" />&nbsp;{{pytanie[4]}}</label>
+    <br>
+    <label> <input type="radio" name="{{pytanie[0]}}" value="{{pytanie[5]}}" />&nbsp;{{pytanie[5]}}</label>
+
+
+    {% endfor %}
+    <input type="submit" />
+</form>
+{% endblock %}
