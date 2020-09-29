@@ -49,13 +49,14 @@
 <div class="tooltipo"><a href="{{ocena[0]}}"
         style="color:#405d27; background-color: #d5e1df; padding: 3px;">{{ocena[1]}}</a>
     <span class="tooltipotext">Nauczyciel: {{ocena[4]}}<br>Kategoria: {{ocena[5]}}<br>
-        <form method="POST" action="#"><span> Usuń ocenę nr<br>
+        <form method="POST" action="#"><label> Usuń ocenę nr<br>
                 <input name="usuwanie" type="submit" value='{{ocena[0]}}' />
-            </span>
+            </label>
         </form>
-        {% endif %}
-        {% endfor %}
-        <br><br><br>
-        {% endfor %}
 </div>
+{% endif %}
+{% endfor %}
+<br><br><br>
+{% endfor %}
+
 {% endblock %}
