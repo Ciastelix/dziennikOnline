@@ -4,7 +4,6 @@ import mysql.connector
 from strony.dodaj.dodaj import dodaj
 from strony.test.test import test
 from strony.uczniowie.uczniowie import uczniowie
-from strony.nauczyciele.nauczyciele import nauczyciele
 
 
 app = Flask(__name__)
@@ -12,7 +11,6 @@ app.secret_key = "hello"
 app.register_blueprint(dodaj, url_prefix="/dodaj")
 app.register_blueprint(test, url_prefix="/test")
 app.register_blueprint(uczniowie, url_prefix="/uczniowie")
-app.register_blueprint(nauczyciele, url_premix="/nauczyciele")
 app.permanent_session_lifetime = timedelta(minutes=20)
 
 ocena = 0
@@ -129,6 +127,18 @@ def user():
         return redirect(url_for("wyborKlasy"))
     else:
         return redirect(url_for("login"))
+
+
+@app.route("/nauczyciele/")
+def listaNauczycieli():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    elif "klasa" not in session:
+        return redirect(url_for("wyborKlasy"))
+    else:
+        stworzKusory()
+        kursor.execute("SELECT Imie, Nazwisko from Nauczyciele order by Nazwisko asc")
+        return render_template("lista_nauczycieli.html", va=kursor)
 
 
 @app.errorhandler(404)
