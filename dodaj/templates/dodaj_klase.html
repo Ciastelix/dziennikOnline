@@ -2,16 +2,11 @@
 
 {% block title %}Dodaj Klasę{% endblock %}
 {% block styles %}
-<style>
-    input[type='text'] {
-        width: 25%;
-    }
-</style>
 {% endblock %}
 {% block content %}
 <form action="#" method="post">
     <p>Klasa: </p>
-    <p><input type="text" name="klasa" /></p>
+    <p><input type="text" name="klasa" value="" required size="5" /></p>
     <p><input type="submit" value="Dodaj" /></p>
 </form>
 {% endblock %}

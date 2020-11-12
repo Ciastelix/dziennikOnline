@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% block vis %}<div style="display: none;">{% endblock %}
-    {% block vis2 %}</div>{% endblock %}
+
 {% block title %}Strona użytkownika{% endblock %}
 
 {% block content %}
 
-<p>Witaj</p>
+<p>Dostałeś {{ocena[0]}}</p>
+<a href="/dodaj/ocena/{{ocena[0]}}/">DODAJ</a>
+<a href="/home">NIE DODAWAJ</a>
 {% endblock %}

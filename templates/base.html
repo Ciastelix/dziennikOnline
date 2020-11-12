@@ -69,7 +69,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Strona Główna</a>
+        <a class="navbar-brand" href="{{ url_for('home') }}">Strona Główna</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -78,10 +78,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/wybor/klasa">Wybór Klasy</a>
+                    <a class="nav-link" href="{{url_for('wyborKlasy')}}">Wybór Klasy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/dodaj/ocena">Dodaj Ocenę</a>
+                    <a class="nav-link" href="{{url_for('wyborKlasy', ocen=0) }}">Dodaj Ocenę</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -89,8 +89,8 @@
                         Listy
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/uczniowie">Lista Uczniów</a>
-                        <a class="dropdown-item" href="/nauczyciele">Lista Nauczycieli</a>
+                        <a class="dropdown-item" href="{{url_for('uczniowie.listaUczniow')}}">Lista Uczniów</a>
+                        <a class="dropdown-item" href="{{url_for('listaNauczycieli')}}">Lista Nauczycieli</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -98,15 +98,15 @@
                         Narzędzia Administracyjne
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/dodaj/uczen">Dodaj Ucznia</a>
-                        <a class="dropdown-item" href="/dodaj/nauczyciel">Dodaj Nauczyciela</a>
-                        <a class="dropdown-item" href="/dodaj/klasa">Dodaj Klasę</a>
+                        <a class="dropdown-item" href="{{url_for('dodaj.dodajUcznia')}}">Dodaj Ucznia</a>
+                        <a class="dropdown-item" href="{{url_for('dodaj.dodajNauczyciela')}}">Dodaj Nauczyciela</a>
+                        <a class="dropdown-item" href="{{url_for('dodaj.dodajKlase')}}">Dodaj Klasę</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/test">Test</a>
+                    <a class="nav-link" href="{{url_for('test.tescik')}}">Test</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Wyloguj</a>
+                    <a class="nav-link" href="{{url_for('logout')}}">Wyloguj</a>
                 </li>
             </ul>
 

@@ -19,12 +19,12 @@ ocena = 0
 def tescik():
     global pytania
     pytania = []
-    stworzKusory("e")
-    kursor.execute("SELECT COUNT(*) from w")
+    stworzKusory("pytania")
+    kursor.execute("SELECT COUNT(*) from pytania")
     maxLiczba = kursor.fetchall()
     if request.method == "POST":
         liczba = int(request.form["liczbaPytan"])
-        kursor.execute(f"SELECT * from w order by RAND() LIMIT {liczba}")
+        kursor.execute(f"SELECT * from pytania order by RAND() LIMIT {liczba}")
         for i in kursor:
             pytania.append(list(i))
         return redirect(url_for("test.pytanie"))
@@ -77,13 +77,8 @@ def pytanie():
 
 @test.route("/pytania/wynik", methods=["POST", "GET"])
 def czyDodac():
-    if request.method == "POST":
-        if request.form["dodawanie"] == "DODAJ":
-            return redirect(url_for("dodaj.dodajOcene"))
-        else:
-            return redirect(url_for("test.tescik"))
-    else:
-        return render_template("wynik.html")
+    _ocena = [ocena]
+    return render_template("wynik.html", ocena=_ocena)
 
 
 def stworzKusory(baza="oceny"):

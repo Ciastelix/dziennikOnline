@@ -2,7 +2,6 @@
 {% block title %}Strona Główna{% endblock %}
 {% block content %}
 
-<h1>Witaj {{session["user"]}}</h1>
-{% for i in klasa %}
-<h1>Pracujesz w klasie {{i[0]}}</h1>
-{% endfor %}{% endblock %}
+<h1>Witaj</h1>
+<h1>Pracujesz w klasie {{klasa}}</h1>
+{% endblock %}

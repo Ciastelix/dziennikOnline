@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block styles %}
+<style>
+    .tooltipo {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltipo .tooltipotext {
+        visibility: hidden;
+        width: auto;
+        background-color: #86af49;
+        color: #d5e1df;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .tooltipo .tooltipotext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgb(175, 217, 230) transparent transparent transparent;
+    }
+
+    .tooltipo:hover .tooltipotext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+{% endblock %}
+{% block title %}Oceny{% endblock %}
+
+{% block content %}
+<br>
+{% for przedmiot in przedmioty %}
+<p>{{przedmiot.przedmiot}}</p>
+{% for ocena in oceny %}
+{% if ocena.przedmiot == przedmiot.id %}
+{% for nauczyciel in nauczyciele %}
+{% if nauczyciel.id == ocena.nauczyciel %}
+{% if ocena.opis == "R" %}
+<div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+        style="color:#405d27; background-color: #d5e1df; padding: 3px;">{{ocena.ocena}}</a>
+    {% elif ocena.opis == "P" %}
+    <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+            style="color:#405d27; background-color: red; padding: 3px;">{{ocena.ocena}}</a>
+        {% elif ocena.opis == "S" %}
+        <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                style="color:#405d27; background-color:blue; padding: 3px;">{{ocena.ocena}}</a>
+            {% elif ocena.opis == "T" %}
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27; background-color: green; padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "D" %}
+                <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                        style="color:#405d27; background-color: yellow; padding: 3px;">{{ocena.ocena}}</a>
+                    {% elif ocena.opis == "A" %}
+                    <div class="tooltipo"><a
+                            href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                            style="color:#405d27; background-color: violet; padding: 3px;">{{ocena.ocena}}</a>
+                        {% elif ocena.opis == "K" %}
+                        <div class="tooltipo"><a
+                                href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                                style="color:#405d27; background-color: aqua; padding: 3px;">{{ocena.ocena}}</a>
+                            {% elif ocena.opis == "O" %}
+                            <div class="tooltipo"><a
+                                    href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                                    style="color:#405d27; background-color: sandybrown; padding: 3px;">{{ocena.ocena}}</a>
+                                {% endif %}
+                                <span class="tooltipotext">Nauczyciel:
+                                    {{nauczyciel.nazwisko + " " +nauczyciel.imie}}<br>Kategoria:
+                                    {{ocena.opis}}<br>
+                                </span>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            {% endfor %}
+                            <br><br><br>
+                            {% endfor %}
+
+                            {% endblock %}

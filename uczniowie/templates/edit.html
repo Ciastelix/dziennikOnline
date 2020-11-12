@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block styles %}
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid whitesmoke;
+        padding: 5px;
+    }
+</style>
+{% endblock %}
+{% block title %}Edytuj ocenę{% endblock %}
+
+{% block content %}
+<br>
+<form action="#" method="POST">
+
+    <select name="ocena">
+        {% for oc in [1, 2, 3, 4, 5, 6 , "np", "+", "-"] %}
+        {% if oc == ocena.ocena %}
+        <option name="ocena" value='{{oc}}' selected>{{oc}}</option>
+        {% else %}
+        <option name="ocena" value='{{oc}}'>{{oc}}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <select name="nauczyciel">
+
+        {% for nauczyciel in nauczyciele %}
+        {% if nauczyciel.id == ocena.nauczyciel %}
+        <option name="nauczyciel" value='{{nauczyciel.id}}' selected>{{nauczyciel.nazwisko + " " + nauczyciel.imie}}
+        </option>
+        {% else %}
+        <option name="nauczyciel" value='{{nauczyciel.id}}'>{{nauczyciel.nazwisko + " " + nauczyciel.imie}}</option>
+        {% endif %}
+        {% endfor %}
+
+    </select>
+    <select name="przedmiot">
+
+        {% for przedmiot in przedmioty %}
+        {% if przedmiot.id == ocena.przedmiot %}
+        <option name="przedmiot" value='{{przedmiot.id}}' selected>{{przedmiot.przedmiot}}</option>
+        {% else %}
+        <option name="przedmiot" value='{{przedmiot.id}}'>{{przedmiot.przedmiot}}</option>
+        {% endif %}
+        {% endfor %}
+
+    </select>
+    <input type="text" value="{{ocena.opis}}" name="opis" size=3 max=3>
+    <input type="submit" value="Zmień" />
+    <a href="{{url_for('uczniowie.usunOcene', idUcznia=ocena.uczen, idOceny=ocena.id)}}">USUŃ OCENĘ</a>
+</form>
+{% endblock %}

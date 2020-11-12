@@ -11,10 +11,10 @@ Lista Nauczycieli
             <p>Lista Nauczycieli</p>
         </th>
     </tr>
-    {% for user in va %}
+    {% for nauczyciel in nauczyciele %}
     <tr>
-        <td>{{user[0]}}</td>
-        <td>{{user[1]}}</td>
+        <td>{{nauczyciel.nazwisko}}</td>
+        <td>{{nauczyciel.imie}}</td>
     </tr>
     {% endfor %}
 </table>

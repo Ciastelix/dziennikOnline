@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Dodaj Ocenę{% endblock %}
+{% block content %}
+<form action="#" method="post">
+    <br>
+    <label style="margin:5px;">Uczeń:
+        <br>
+        <select name="uczen" required>
+            <option disabled name="uczen" value="" selected hidden>Wybierz ucznia</option>
+            {% for uczen in uczniowie %}
+            <option value={{uczen.id}} name="uczen">{{uczen.nazwisko + " " + uczen.imie}}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <br><br>
+    <label style="margin:5px;">Ocena:
+        <br>
+        <select name="ocena" required>
+            <option disabled name="ocena" value="" selected hidden>Wybierz ocenę</option>
+            {% for ocena in oceny %}
+            <option value={{ocena}} name="ocena">{{ocena}}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <br><br>
+    <label style="margin:5px;">Ocena:
+        <br>
+        <input type="text" name="opis" placeholder="Krótki opis" style="width: 55%;" required />
+    </label>
+    <br><br>
+    <label style="margin:5px;">Przedmiot:
+        <br>
+        <select name="przedmiot" required>
+            <option disabled name="przedmiot" value="" hidden>Wybierz przedmiot</option>
+            {% for przedmiot in przedmioty %}
+            <option value={{przedmiot.id}} name="przedmiot">{{przedmiot.przedmiot}}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <br><br>
+    <label style="margin: 5px;">Nauczyciel:<br>
+        <select name="nauczyciel" required>
+            <option disabled name="nauczyciel" value="" selected hidden>Wybierz nauczyciela</option>
+            {% for nauczyciel in nauczyciele %}
+            <option value={{nauczyciel.id}} name="nauczyciel">{{nauczyciel.nazwisko + " " +nauczyciel.imie}}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <br><br>
+    <input type="submit" value="Dodaj" />
+</form>
+{% endblock %}

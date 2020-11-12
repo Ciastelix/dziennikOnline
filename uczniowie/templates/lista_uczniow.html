@@ -11,10 +11,11 @@ Lista Uczniów
             <p>Wybierz Ucznia</p>
         </th>
     </tr>
-    {% for user in va %}
+    {% for uczen in uczniowie %}
     <tr>
 
-        <td><a href="oceny/{{user[2]}}" style="color: #86af49;">{{user[0]}} {{user[1]}}<br><br></a></td>
+        <td><a href="{{url_for('uczniowie.ocenyUcznia', _id=uczen.id)}}" style="color: #86af49;">{{uczen.nazwisko}}
+                {{uczen.imie}}<br><br></a></td>
     </tr>
     {% endfor %}
 </table>

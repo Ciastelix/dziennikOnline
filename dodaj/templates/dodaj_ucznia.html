@@ -4,18 +4,18 @@
 {% block content %}
 <form action="#" method="post">
     <p>Imię: </p>
-    <p><input type="text" name="imie" /></p>
+    <p><input type="text" name="imie" required /></p>
     <p>Nazwisko: </p>
-    <p><input type="text" name="nazwisko" /></p>
+    <p><input type="text" name="nazwisko" required /></p>
     <p>PESEL: </p>
-    <p><input type="text" name="pesel" pattern="[0-9]{11}" /></p>
+    <p><input type="text" name="pesel" pattern="[0-9]{11}" required /></p>
     <p>Data urodzdenia: </p>
-    <p><input type="date" name="dataUrodzenia" /></p>
+    <p><input type="date" name="dataUrodzenia" required /></p>
     <p>Klasa: </p>
-    <select name="klasa">
+    <select name="klasa" required>
         <option disabled value="Wybierz klase" name="klasa" selected>Wybierz klase</option>
         {% for klasa in klasy %}
-        <option value='{{klasa[0]}}' name="klasa">{{klasa[1]}}</option>
+        <option value='{{klasa.id}}' name="klasa">{{klasa.klasa}}</option>
         {% endfor %}
     </select>
     <br><br>
