@@ -45,7 +45,6 @@ def ocenyUcznia(_id):
         oceny = [i for i in Ocena.query.filter_by(uczen=_id).all()]
         idPrzedmiotow = [i.przedmiot for i in oceny]
         idPrzedmiotow = set(idPrzedmiotow)
-        print(idPrzedmiotow)
         przedmioty = [Przedmiot.query.filter_by(id=i).first() for i in idPrzedmiotow]
         nauczyciele = [i for i in Nauczyciel.query.all()]
 

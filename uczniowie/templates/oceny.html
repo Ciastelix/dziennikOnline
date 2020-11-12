@@ -41,51 +41,64 @@
 {% block title %}Oceny{% endblock %}
 
 {% block content %}
-<br>
-{% for przedmiot in przedmioty %}
-<p>{{przedmiot.przedmiot}}</p>
-{% for ocena in oceny %}
-{% if ocena.przedmiot == przedmiot.id %}
-{% for nauczyciel in nauczyciele %}
-{% if nauczyciel.id == ocena.nauczyciel %}
-{% if ocena.opis == "R" %}
-<div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-        style="color:#405d27; background-color: #d5e1df; padding: 3px;">{{ocena.ocena}}</a>
-    {% elif ocena.opis == "P" %}
-    <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-            style="color:#405d27; background-color: red; padding: 3px;">{{ocena.ocena}}</a>
-        {% elif ocena.opis == "S" %}
-        <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-                style="color:#405d27; background-color:blue; padding: 3px;">{{ocena.ocena}}</a>
-            {% elif ocena.opis == "T" %}
-            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-                    style="color:#405d27; background-color: green; padding: 3px;">{{ocena.ocena}}</a>
-                {% elif ocena.opis == "D" %}
-                <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-                        style="color:#405d27; background-color: yellow; padding: 3px;">{{ocena.ocena}}</a>
-                    {% elif ocena.opis == "A" %}
-                    <div class="tooltipo"><a
-                            href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-                            style="color:#405d27; background-color: violet; padding: 3px;">{{ocena.ocena}}</a>
-                        {% elif ocena.opis == "K" %}
-                        <div class="tooltipo"><a
-                                href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-                                style="color:#405d27; background-color: aqua; padding: 3px;">{{ocena.ocena}}</a>
-                            {% elif ocena.opis == "O" %}
-                            <div class="tooltipo"><a
-                                    href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
-                                    style="color:#405d27; background-color: sandybrown; padding: 3px;">{{ocena.ocena}}</a>
-                                {% endif %}
-                                <span class="tooltipotext">Nauczyciel:
-                                    {{nauczyciel.nazwisko + " " +nauczyciel.imie}}<br>Kategoria:
-                                    {{ocena.opis}}<br>
-                                </span>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% endif %}
-                            {% endfor %}
-                            <br><br><br>
-                            {% endfor %}
+<table>
 
-                            {% endblock %}
+
+    {% for przedmiot in przedmioty %}
+    <tr>
+        <th>
+            {{przedmiot.przedmiot}}&nbsp
+        </th>
+        {% for ocena in oceny %}
+        {% if ocena.przedmiot == przedmiot.id %}
+        {% for nauczyciel in nauczyciele %}
+        {% if nauczyciel.id == ocena.nauczyciel %}
+
+        {% if ocena.opis == "R" %}
+        <td style=" background-color: #d5e1df; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "P" %}
+        <td style=" background-color: red; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "S" %}
+        <td style=" background-color:blue; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "T" %}
+        <td style=" background-color: green; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "D" %}
+        <td style=" background-color: yellow; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "A" %}
+        <td style=" background-color: violet; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "K" %}
+        <td style=" background-color: aqua; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% elif ocena.opis == "O" %}
+        <td style=" background-color: sandybrown; text-align: center;">
+            <div class="tooltipo"><a href="{{url_for('uczniowie.edytujOcene', _id=ocena.uczen, idOceny=ocena.id)}}"
+                    style="color:#405d27;  padding: 3px;">{{ocena.ocena}}</a>
+                {% endif %}
+                <span class="tooltipotext">Nauczyciel:
+                    {{nauczyciel.nazwisko + " " +nauczyciel.imie}}<br>Kategoria:
+                    {{ocena.opis}}<br>
+                </span>
+            </div>
+        </td>
+        {% endif %}
+
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
